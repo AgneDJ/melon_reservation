@@ -23,6 +23,18 @@ def base():
     return render_template("base.html")
 
 
+@app.route("/login")
+def login():
+    """Login."""
+    return render_template("login.html")
+
+
+@app.route("/signup")
+def signup():
+    """Signup."""
+    return render_template("signup.html")
+
+
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(host='0.0.0.0')
