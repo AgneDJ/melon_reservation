@@ -1,0 +1,3 @@
+{% extends 'base.html' %} {% block content %} {% if "user_email" in session %}
+{% include "login.html" %} {% else %} {% include "signin.html" %} {% endif %} {%
+endblock %}

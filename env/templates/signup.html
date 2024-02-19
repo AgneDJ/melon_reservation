@@ -1,0 +1,43 @@
+<form action="action_page.php" method="post">
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required />
+
+    <label for="uname"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="Email" required />
+
+    <button type="submit">Register</button>
+  </div>
+</form>
+
+<script type="text/javascript">
+  const user = document.getElementsBy("uname");
+  const email = document.getElementsBy("email");
+  const button = document.getElementById("submit");
+
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
+    fetch("0.0.0.0/signup", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ user_name: user.value, email: email.value }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          alert("Something is wrong");
+        }
+      })
+      .then((jsonResponse) => {
+        if (e.target.innerText == "Register") {
+          e.target.innerText = "Registered";
+        }
+        location.reload();
+      })
+      .catch((err) => console.error(err));
+  });
+</script>

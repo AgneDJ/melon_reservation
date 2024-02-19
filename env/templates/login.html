@@ -1,0 +1,42 @@
+<form method="post">
+  <div class="container">
+    <label for="uname"><b>User Name</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required />
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required />
+
+    <button type="submit">Login</button>
+  </div>
+</form>
+
+<script type="text/javascript">
+  const email = document.getElementsBy("email");
+  const button = document.getElementById("submit");
+
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
+    fetch("0.0.0.0/login", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ email: email.value }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          alert("Something is wrong");
+        }
+      })
+      .then((jsonResponse) => {
+        if (e.target.innerText == "Login") {
+          e.target.innerText = "Loggin in";
+        }
+        location.reload();
+      })
+      .catch((err) => console.error(err));
+  });
+</script>

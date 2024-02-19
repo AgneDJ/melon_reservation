@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Melon Tasting Reservation Scheduler</title>
+    <link rel="stylesheet" href="static/css/styles.css" />
+  </head>
+  <body>
+    {% if "user_email" in session %} {% include calendar.html %} {% else %}
+    <p>Hello! Please login!</p>
+    {% include "login.html" %} New user? Then register here: {% include
+    "signup.html" %} {% endif %} {% include 'calendar.html' %}
+  </body>
+</html>
